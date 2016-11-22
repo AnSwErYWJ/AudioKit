@@ -19,6 +19,7 @@
 
 int main(int argc, const char *argv[])
 {
+    /* judge arg */
     if(argc != 3)
     {
         fprintf(stderr,"Usage: channel_separate input_channel(s) input_file\n");
@@ -48,20 +49,21 @@ int main(int argc, const char *argv[])
     
     printf("Running message:\n  input_file:%s\n  input_channel(s):%d\n\n",argv[2],raw);
     
-    int frame_len = sizeof(short int);
+    int dot_len = sizeof(short int);
+    int frame_len = dot_len * raw;
     
     /* get size of input_file */
     struct stat statbuf;  
     stat(argv[2],&statbuf);  
-    size_t size = statbuf.st_size; //若文件过大会溢出
+    size_t size = statbuf.st_size; // st_size: long long int/long int 64/32
     //printf("%d\n",size);
 
-    size = size%(frame_len*raw) ? size - size%(frame_len*raw) : size;
+    size = size%frame_len ? size - size%frame_len : size;  // file size
     //printf("%ld\n",size);
     
-    int n = size/(raw*frame_len);
+    int n = size/frame_len; // dot numbers
             
-    /* read file to buf */
+    /* read input_file to buf */
     short int *in_buf = (short int *)audio_calloc(1,size);
     if(fread(in_buf,1,size,in) != size)
     {
@@ -71,7 +73,7 @@ int main(int argc, const char *argv[])
 
     int i = 0,j = 0;
     FILE *out = NULL;
-    short int *out_buf = (short int *)audio_calloc(n,frame_len);
+    short int *out_buf = (short int *)audio_calloc(n,dot_len);
 
     char *output_file = (char *)audio_calloc(1,14);
     for (i = 0;i < raw;i++)
@@ -86,14 +88,14 @@ int main(int argc, const char *argv[])
             exit(EXIT_FAILURE);
         }
        
-        /* write output file */
+        /* write one channel to output file */
         for (j = 0;j < n;j++)
         {    
             out_buf[j] = in_buf[i+j*raw];
         }
-        fwrite(out_buf,frame_len,n,out);
+        fwrite(out_buf,dot_len,n,out);
         
-        memset(out_buf, 0, n*frame_len);
+        memset(out_buf, 0, n*dot_len);
         memset(output_file, 0, 14);
         fclose(out);
     }
