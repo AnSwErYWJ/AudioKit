@@ -1,42 +1,45 @@
-# 一些音频切割合成工具
-
-# 基础知识介绍
-- 采样率,代表一秒种采样的点,如采样率为16KHZ,则表示1s采样16k个点.
-- 若音频为8声道音频,则1个采样点(帧)有8个声道,每个声道16位(样本长度),即2个字节.
-
-# AudioKi 
+# AudioKits 
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badge/)
 [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 
 ## Introduction
-This is an audio resamplerate program based on [Secret Rabbit Code](http://www.mega-nerd.com/SRC/index.html) and [iniparser](http://ndevilla.free.fr/iniparser).
+This is a series of kits to opreate audio data, only support *PCM* now.
+
+Welcome pull request to me , if you have any other kits or recommendations.
+
 
 ## Installation
 ```
-$ git clone git@github.com:AnSwErYWJ/AudioResamplerate.git
+$ git clone git@github.com:AnSwErYWJ/AudioKits.git
 ```
 
 ## Usage
-1. Compile:
+1. Compile: you can modify **SRC** in [**Makefie**](https://github.com/AnSwErYWJ/AudioKits/blob/master/Makefile) to change kits.
     ```
-    # to generate .so
-    $ make iniparser
-    $ make log
-    $ make resamplerate
+    $ make
     ```
     
-    ```
-    # to generate bin
-    $ make all
-    ```
-
-2. Modify the [**config.ini**](https://github.com/AnSwErYWJ/AudioResamplerate/blob/master/config.ini) to configure the parameters, input support PCM or WAV audio files, and output only support PCM audio files.
-
+2.   Modify **Sample length** in [**config.h**](https://github.com/AnSwErYWJ/AudioKits/blob/master/config.h),default is **signed 16 bit**.
+    
+    
 3. Then,run your program with :
     ```
-    $ chmod +x configure.sh
-    $ sh configure.sh
-    $ ./bin/resamplerate
+    # cut 
+    $ channel_convert input_channel(s) input_file output_channel(s) output_file
+    
+    # get one of the channels
+    $ channel_get input_channel(s) input_file output_channel_number output_file
+    
+    # merge mono audio data to mutilchannels
+    $ channel_merge output_channel(s) input_file1(mono) input_file2(mono) ... input_filen(mono) output_file
+    
+    # separate mutilchannels to mono
+    $ channel_separate input_channel(s) input_file
+    ```
+    
+4. clean:
+    ```
+    $ make clean
     ```
 
 ## Environment
@@ -45,10 +48,8 @@ $ git clone git@github.com:AnSwErYWJ/AudioResamplerate.git
 + Bash Shell
 
 ## Todo
-- [ ] Use TOML replace iniparser.
-
-## Reference
-- [Convering 8/16/32 bits/sample array to floats-array](http://stackoverflow.com/questions/4632502/waveinproc-windows-audio-question)
+- [ ] support wav
+- [ ] improve efficiency by multithreading
 
 ## About me
 [![forthebadge](http://forthebadge.com/images/badges/ages-20-30.svg)](http://forthebadge.com)
