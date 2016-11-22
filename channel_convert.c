@@ -8,7 +8,7 @@
 /*
  * Usage: channel_convert input_channel(s) input_file output_channel(s) output_file
  *
- * Function: 支持音频切割(切尾巴)和合成(一路到多路,最大16路)
+ * Function: cut audio data(cut from tail) and synthetise (one to multi,max is 16)
  */
 
 #include<stdio.h>
@@ -18,6 +18,7 @@
 
 int main(int argc, const char *argv[])
 {
+    /* judge arg */
     if(argc != 5)
     {
         fprintf(stderr,"Usage: channel_convert input_channel(s) input_file output_channel(s) output_file\n");
@@ -26,13 +27,13 @@ int main(int argc, const char *argv[])
     
     int raw = atoi(argv[1]);
     int new = atoi(argv[3]);
-    if (raw < 0 || new < 0 || raw > 16 || new > 16)
+    if (raw < 0 || new < 0 || raw > 16 || new > 16) //channel(s) between 0 and 16
     {
         fprintf(stderr,"Error: channel(s) must be positive number and max channels is 16.\n");
         exit(EXIT_FAILURE);
     }
     
-    /* channel judge */
+    /* judge channel */
     if (raw >= new)
     {
         printf("Action: cut audio data\n");
@@ -54,7 +55,6 @@ int main(int argc, const char *argv[])
         fprintf(stderr,"Error:%s open failed!\n",argv[2]);
         exit(EXIT_FAILURE);
     }
-
     FILE *out = fopen(argv[4],"wb");
     if(out == NULL)
     {
@@ -62,9 +62,9 @@ int main(int argc, const char *argv[])
         exit(EXIT_FAILURE);
     }
 
-    int frame_len = sizeof(short int);
-    short int *in_buf = (short int *)audio_calloc(raw,frame_len);
-    short int *out_buf = (short int *)audio_calloc(new,frame_len);
+    int dot_len = sizeof(short int);
+    short int *in_buf = (short int *)audio_calloc(raw,dot_len);
+    short int *out_buf = (short int *)audio_calloc(new,dot_len);
     
     printf("Running message:\n  input_file:%s\n  input_channel(s):%d\n  output_file:%s\n  output_channel(s):%d\n\n",argv[2],raw,argv[4],new);
     
@@ -72,20 +72,20 @@ int main(int argc, const char *argv[])
     
     while(1)
     {
-        if(fread(in_buf,frame_len,raw,in) != raw)
+        if(fread(in_buf,dot_len,raw,in) != raw)
             break;
 
         for(i = 0;i < new;i++)
         {
             if (raw == 1)
-                out_buf[i] = in_buf[0];
+                out_buf[i] = in_buf[0]; // synthetise
             else
-                out_buf[i] = in_buf[i];
+                out_buf[i] = in_buf[i]; // cut
         } 
         
-        fwrite(out_buf,frame_len,new,out);
-        memset(in_buf, 0, raw*frame_len);
-        memset(out_buf, 0, new*frame_len);
+        fwrite(out_buf,dot_len,new,out);
+        memset(in_buf, 0, raw*dot_len);
+        memset(out_buf, 0, new*dot_len);
     }
    
     printf("\nSuccess\n");
