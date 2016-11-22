@@ -108,7 +108,7 @@ int main(int argc, const char *argv[])
     audio_free(output_file);
     fclose(in);
     
-    printf("\nSuccess\n");
+    printf("\nSuccess,output_files in current dirctory.\n");
 
     return 0;
 }
