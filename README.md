@@ -62,7 +62,7 @@ $ git clone git@github.com:AnSwErYWJ/AudioKits.git
 ## Copyright and License
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/GPL-3.0/)
 
-    AudioResamplerate
+    AudioKits
     Copyright (C) 2016  AnSwErYWJ
 
     This program is free software: you can redistribute it and/or modify
