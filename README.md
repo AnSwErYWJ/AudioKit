@@ -14,12 +14,12 @@ $ git clone git@github.com:AnSwErYWJ/AudioKits.git
 ```
 
 ## Usage
-1. Compile: you can modify **SRC** in [**Makefie**](https://github.com/AnSwErYWJ/AudioKits/blob/master/Makefile) to change kits.
+1. Compile: you can modify ``SRC`` in ``Makefie`` to change kits.
     ```
     $ make
     ```
     
-2.   Modify **Sample length** in [**config.h**](https://github.com/AnSwErYWJ/AudioKits/blob/master/config.h),default is **signed 16 bit**.
+2.   Modify ``Sample length`` in ``config.h``,default is **signed 16 bit**.
     
     
 3. Then,run your program with :
@@ -62,7 +62,7 @@ $ git clone git@github.com:AnSwErYWJ/AudioKits.git
 ## Copyright and License
 [![GPL Licence](https://badges.frapsoft.com/os/gpl/gpl.svg?v=103)](https://opensource.org/licenses/GPL-3.0/)
 
-    AudioKits
+    AudioKits
     Copyright (C) 2016  AnSwErYWJ
 
     This program is free software: you can redistribute it and/or modify
