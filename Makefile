@@ -1,5 +1,5 @@
 # 当前目录找不到依赖/目标文件时,去指定路径查找
-VPATH ?= ~/Desktop/DogFood/C/audio_tools:.
+VPATH ?= ~/Desktop/self/AudioKits/:.
 
 SRC := channel_merge.c # channel_separate.c channel_get.c channel_convert.c channel_merge.c
 ALL_SRC := $(SRC) buffer.c
