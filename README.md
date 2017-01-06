@@ -28,13 +28,16 @@ $ git clone git@github.com:AnSwErYWJ/AudioKits.git
     $ channel_convert input_channel(s) input_file output_channel(s) output_file
     
     # get one of the channels from mutilchannels audio 
-    $ channel_get input_channel(s) input_file output_channel_number output_file
+    $ ./channel_get input_channel(s) input_file output_channel_number output_file
     
     # merge some mono audios to one mutilchannels audio
-    $ channel_merge output_channel(s) input_file1(mono) input_file2(mono) ... input_filen(mono) output_file
+    $ ./channel_merge output_channel(s) input_file1(mono) input_file2(mono) ... input_filen(mono) output_file
     
     # separate one mutilchannels audio to some mono audios
-    $ channel_separate input_channel(s) input_file
+    $ ./channel_separate input_channel(s) input_file
+    
+    # read header infonmation of wave audio
+    $ ./read_wavheader xxx.wav
     ```
     
 4. clean:

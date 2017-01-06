@@ -1,8 +1,8 @@
 # 当前目录找不到依赖/目标文件时,去指定路径查找
 VPATH ?= ~/Desktop/self/AudioKits/:.
 
-SRC := channel_merge.c # channel_separate.c channel_get.c channel_convert.c channel_merge.c
-ALL_SRC := $(SRC) buffer.c
+SRC := read_wavheader.c #channel_merge.c channel_separate.c channel_get.c channel_convert.c channel_merge.c
+ALL_SRC := $(SRC) ./buffer/buffer.c
 OBJS := $(ALL_SRC:.c=.o) # 加了:前面的变量不能使用后面的变量
 TARGET := $(SRC:.c= )
 
