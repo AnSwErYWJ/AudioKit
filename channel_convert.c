@@ -7,7 +7,7 @@
 
 /*
  * Usage: channel_convert input_channel(s) input_file output_channel(s) output_file
- * Function: cut audio data(cut from tail)
+ * Function: cut mutilchannels audio data(cut from tail)
  */
 
 #include<stdio.h>

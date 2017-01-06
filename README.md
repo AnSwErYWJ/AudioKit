@@ -3,7 +3,7 @@
 [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 
 ## Introduction
-This is a series of kits to opreate audio data, only support *PCM* now.
+This is a series of kits to opreate audio data.
 
 Welcome pull request to me , if you have any other kits or recommendations.
 
@@ -24,16 +24,16 @@ $ git clone git@github.com:AnSwErYWJ/AudioKits.git
     
 3. Then,run your program with :
     ```
-    # cut 
+    # cut mutilchannels audio data(cut from tail) 
     $ channel_convert input_channel(s) input_file output_channel(s) output_file
     
-    # get one of the channels
+    # get one of the channels from mutilchannels audio 
     $ channel_get input_channel(s) input_file output_channel_number output_file
     
-    # merge mono audio data to mutilchannels
+    # merge some mono audios to one mutilchannels audio
     $ channel_merge output_channel(s) input_file1(mono) input_file2(mono) ... input_filen(mono) output_file
     
-    # separate mutilchannels to mono
+    # separate one mutilchannels audio to some mono audios
     $ channel_separate input_channel(s) input_file
     ```
     
@@ -48,7 +48,6 @@ $ git clone git@github.com:AnSwErYWJ/AudioKits.git
 + Bash Shell
 
 ## Todo
-- [ ] support wav
 - [ ] improve efficiency by multithreading
 
 ## About me
