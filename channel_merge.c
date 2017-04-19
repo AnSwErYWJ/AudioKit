@@ -80,7 +80,7 @@ int main(int argc, const char *argv[])
         if (i >= 1)
             calSize = size[i] > size[i-1]? size[i]:size[i-1];
     }
-    calSize *= 3;
+    calSize *= raw;
     short int *out_buf = (short int *)audio_calloc(1,calSize);
     //printf("%ld\n",allSize);
     //printf("%ld\n",calSize);
