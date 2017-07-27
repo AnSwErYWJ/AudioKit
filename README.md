@@ -38,6 +38,12 @@ $ git clone git@github.com:AnSwErYWJ/AudioKits.git
     
     # read header infonmation of wave audio
     $ ./read_wavheader xxx.wav
+    
+    # convert pcm file to wave file
+    $ ./pcm_2_wav <wave header length> <pcm file> <wave file>
+    
+    # convert wave file to pcm file
+    $ ./wav_2_pcm <wave header length> <wave file> <pcm file>
     ```
     
 4. clean:
