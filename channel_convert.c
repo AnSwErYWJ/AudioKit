@@ -56,6 +56,7 @@ int main(int argc, const char *argv[])
         fprintf(stderr,"Error:%s open failed!\n",argv[2]);
         exit(EXIT_FAILURE);
     }
+    fseek(in, 44, SEEK_SET);
     FILE *out = fopen(argv[4],"wb");
     if(out == NULL)
     {

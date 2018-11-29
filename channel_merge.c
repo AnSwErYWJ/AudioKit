@@ -105,6 +105,7 @@ int main(int argc, const char *argv[])
             exit(EXIT_FAILURE);
         }
         
+        fseek(in, 44, SEEK_SET);
         in_buf = (short int *)audio_calloc(1,size[i]);
         //printf("%ld\n",size[i]);
         n = size[i]/(LENGTH*1);
